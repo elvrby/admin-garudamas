@@ -1,0 +1,135 @@
+"use client";
+import React, { useEffect, useRef, useState } from "react";
+import Link from "next/link";
+
+export function Header() {
+  const [menuOpen, setMenuOpen] = useState(false);
+  const [profileOpen, setProfileOpen] = useState(false);
+  const profileRef = useRef<HTMLDivElement>(null);
+
+  // Close dropdowns on outside click / ESC
+  useEffect(() => {
+    const onClick = (e: MouseEvent) => {
+      if (profileRef.current && !profileRef.current.contains(e.target as Node)) {
+        setProfileOpen(false);
+      }
+    };
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        setMenuOpen(false);
+        setProfileOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", onClick);
+    document.addEventListener("keydown", onKey);
+    return () => {
+      document.removeEventListener("mousedown", onClick);
+      document.removeEventListener("keydown", onKey);
+    };
+  }, []);
+
+  return (
+    <header className="sticky top-0 z-50 w-full border-b border-white/10 bg-black backdrop-blur">
+      <div className="mx-auto flex h-16 max-w-7xl items-center px-4 sm:px-6 lg:px-8">
+        {/* Left: Logo */}
+        <Link href="/" className="group flex items-center gap-2 rounded-xl px-2 py-1 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/40">
+          {/* Simple geometric logo */}
+          <span className="relative inline-flex h-8 w-8 items-center justify-center rounded-xl bg-white/10 ring-1 ring-white/15">
+            <span className="absolute inset-0 rounded-xl bg-gradient-to-br from-white/15 to-white/5" />
+            <span className="block h-3 w-3 rotate-45 rounded-[4px] bg-white" />
+          </span>
+          <span className="text-lg font-semibold tracking-wide text-white group-hover:text-white">
+            Garuda <span className="text-white/70">Mas</span>
+          </span>
+        </Link>
+
+        {/* Center: Nav (desktop) */}
+        <nav className="mx-auto hidden md:flex items-center gap-6">
+          <Link href="/" className="text-sm text-white/80 hover:text-white transition-colors">
+            Home
+          </Link>
+          <Link href="/about" className="text-sm text-white/80 hover:text-white transition-colors">
+            About
+          </Link>
+          <Link href="/terms" className="text-sm text-white/80 hover:text-white transition-colors">
+            Terms &amp; Use
+          </Link>
+        </nav>
+
+        {/* Right: Profile */}
+        <div className="ml-auto flex items-center gap-2">
+          {/* Mobile menu toggle */}
+          <button
+            aria-label="Toggle menu"
+            className="inline-flex h-10 w-10 items-center justify-center rounded-xl border border-white/10 bg-white/5 text-white hover:bg-white/10 md:hidden focus:outline-none focus-visible:ring-2 focus-visible:ring-white/40"
+            onClick={() => setMenuOpen((v) => !v)}
+          >
+            <svg aria-hidden="true" viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="2">
+              {menuOpen ? <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" /> : <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16" />}
+            </svg>
+          </button>
+
+          {/* Profile dropdown */}
+          <div className="relative" ref={profileRef}>
+            <button
+              onClick={() => setProfileOpen((v) => !v)}
+              className="group inline-flex items-center gap-2 rounded-xl border border-white/10 bg-white/5 px-2 py-1.5 text-white hover:bg-white/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/40"
+              aria-haspopup="menu"
+              aria-expanded={profileOpen}
+            >
+              <span className="inline-flex h-8 w-8 items-center justify-center overflow-hidden rounded-full bg-white/10 ring-1 ring-white/15">
+                {/* Placeholder avatar initial */}
+                <span className="text-sm font-medium text-white/90">GM</span>
+              </span>
+              <svg aria-hidden="true" viewBox="0 0 20 20" className="h-4 w-4 text-white/70 group-hover:text-white transition" fill="currentColor">
+                <path fillRule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.127l3.71-3.896a.75.75 0 011.08 1.04l-4.24 4.46a.75.75 0 01-1.08 0l-4.24-4.46a.75.75 0 01.02-1.06z" clipRule="evenodd" />
+              </svg>
+            </button>
+
+            {profileOpen && (
+              <div role="menu" className="absolute right-0 mt-2 w-48 overflow-hidden rounded-xl border border-white/10 bg-black/95 p-1.5 shadow-2xl ring-1 ring-white/10 backdrop-blur">
+                <Link href="/profile" role="menuitem" className="block rounded-lg px-3 py-2 text-sm text-white/90 hover:bg-white/10" onClick={() => setProfileOpen(false)}>
+                  Profile
+                </Link>
+                <Link href="/settings" role="menuitem" className="block rounded-lg px-3 py-2 text-sm text-white/90 hover:bg-white/10" onClick={() => setProfileOpen(false)}>
+                  Settings
+                </Link>
+                <div className="my-1 h-px bg-white/10" />
+                <button
+                  role="menuitem"
+                  className="w-full rounded-lg px-3 py-2 text-left text-sm text-red-300 hover:bg-red-400/10"
+                  onClick={() => {
+                    setProfileOpen(false);
+                    // TODO: hook up logout
+                  }}
+                >
+                  Log out
+                </button>
+              </div>
+            )}
+          </div>
+        </div>
+      </div>
+
+      {/* Mobile nav sheet */}
+      {menuOpen && (
+        <div className="md:hidden">
+          <div className="border-t border-white/10" />
+          <nav className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-3 space-y-1">
+            <Link href="/" className="block rounded-lg px-3 py-2 text-white/90 hover:bg-white/10" onClick={() => setMenuOpen(false)}>
+              Home
+            </Link>
+            <Link href="/about" className="block rounded-lg px-3 py-2 text-white/90 hover:bg-white/10" onClick={() => setMenuOpen(false)}>
+              About
+            </Link>
+            <Link href="/terms" className="block rounded-lg px-3 py-2 text-white/90 hover:bg-white/10" onClick={() => setMenuOpen(false)}>
+              Terms &amp; Use
+            </Link>
+          </nav>
+        </div>
+      )}
+    </header>
+  );
+}
+
+export default Header;

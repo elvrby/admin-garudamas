@@ -1,103 +1,122 @@
-import Image from "next/image";
-
+// app/page.tsx
 export default function Home() {
   return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+    <main className="p-4 sm:p-6 lg:p-8 space-y-6">
+      {/* Headline */}
+      <div className="flex flex-col gap-2">
+        <h1 className="text-2xl sm:text-3xl text-black font-semibold">Dashboard</h1>
+        <p className="text-sm text-gray-500 dark:text-gray-400">Ringkasan singkat untuk Garuda Mas — statistik dan aktivitas terbaru.</p>
+      </div>
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+      {/* Stats */}
+      <section className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4">
+        <div className="rounded-2xl border border-black/5 dark:border-white/10 bg-white dark:bg-zinc-900 p-5 shadow-sm">
+          <div className="text-sm text-gray-500 dark:text-gray-400">Total Pesanan</div>
+          <div className="mt-2 flex items-baseline gap-2">
+            <div className="text-2xl font-bold">1,284</div>
+            <span className="text-xs px-2 py-0.5 rounded-full bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-300">+8%</span>
+          </div>
+          <div className="mt-3 h-2 rounded-full bg-gray-100 dark:bg-white/10">
+            <div className="h-2 rounded-full bg-black dark:bg-white/80 w-3/5" />
+          </div>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+
+        <div className="rounded-2xl border border-black/5 dark:border-white/10 bg-white dark:bg-zinc-900 p-5 shadow-sm">
+          <div className="text-sm text-gray-500 dark:text-gray-400">Pendapatan</div>
+          <div className="mt-2 text-2xl font-bold">Rp 87.450.000</div>
+          <div className="mt-3 h-2 rounded-full bg-gray-100 dark:bg-white/10">
+            <div className="h-2 rounded-full bg-black dark:bg-white/80 w-2/3" />
+          </div>
+        </div>
+
+        <div className="rounded-2xl border border-black/5 dark:border-white/10 bg-white dark:bg-zinc-900 p-5 shadow-sm">
+          <div className="text-sm text-gray-500 dark:text-gray-400">Tiket Baru</div>
+          <div className="mt-2 text-2xl font-bold">42</div>
+          <div className="mt-3 h-2 rounded-full bg-gray-100 dark:bg-white/10">
+            <div className="h-2 rounded-full bg-black dark:bg-white/80 w-1/3" />
+          </div>
+        </div>
+
+        <div className="rounded-2xl border border-black/5 dark:border-white/10 bg-white dark:bg-zinc-900 p-5 shadow-sm">
+          <div className="text-sm text-gray-500 dark:text-gray-400">Voucher Aktif</div>
+          <div className="mt-2 text-2xl font-bold">13</div>
+          <div className="mt-3 h-2 rounded-full bg-gray-100 dark:bg-white/10">
+            <div className="h-2 rounded-full bg-black dark:bg-white/80 w-1/4" />
+          </div>
+        </div>
+      </section>
+
+      {/* Recent activity & table */}
+      <section className="grid grid-cols-1 xl:grid-cols-3 gap-4">
+        <div className="xl:col-span-2 rounded-2xl border border-black/5 dark:border-white/10 bg-white dark:bg-zinc-900 p-5 shadow-sm">
+          <div className="flex items-center justify-between">
+            <h2 className="text-lg font-semibold">Pesanan Terbaru</h2>
+            <a href="/admin/pesanan" className="text-sm text-black/70 dark:text-white/80 hover:underline">
+              Lihat semua
+            </a>
+          </div>
+          <div className="mt-4 overflow-x-auto">
+            <table className="min-w-full text-sm">
+              <thead className="text-left text-gray-500 dark:text-gray-400">
+                <tr>
+                  <th className="py-2 pr-4">Order ID</th>
+                  <th className="py-2 pr-4">Customer</th>
+                  <th className="py-2 pr-4">Total</th>
+                  <th className="py-2 pr-4">Status</th>
+                  <th className="py-2">Tanggal</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-black/5 dark:divide-white/10">
+                {[
+                  { id: "ORD-2301", name: "Andi", total: "Rp 1.250.000", status: "Diproses", date: "28 Agu 2025" },
+                  { id: "ORD-2299", name: "Sinta", total: "Rp 780.000", status: "Selesai", date: "28 Agu 2025" },
+                  { id: "ORD-2295", name: "Rudi", total: "Rp 2.100.000", status: "Belum Bayar", date: "27 Agu 2025" },
+                ].map((row) => (
+                  <tr key={row.id}>
+                    <td className="py-3 pr-4 font-medium">{row.id}</td>
+                    <td className="py-3 pr-4">{row.name}</td>
+                    <td className="py-3 pr-4">{row.total}</td>
+                    <td className="py-3 pr-4">
+                      <span
+                        className={[
+                          "inline-flex items-center rounded-full px-2.5 py-0.5 text-xs",
+                          row.status === "Selesai" && "bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-300",
+                          row.status === "Diproses" && "bg-amber-100 text-amber-700 dark:bg-amber-900/30 dark:text-amber-300",
+                          row.status === "Belum Bayar" && "bg-red-100 text-red-700 dark:bg-red-900/30 dark:text-red-300",
+                        ]
+                          .filter(Boolean)
+                          .join(" ")}
+                      >
+                        {row.status}
+                      </span>
+                    </td>
+                    <td className="py-3">{row.date}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div className="rounded-2xl border border-black/5 dark:border-white/10 bg-white dark:bg-zinc-900 p-5 shadow-sm">
+          <h2 className="text-lg font-semibold">Aktivitas</h2>
+          <ul className="mt-4 space-y-3">
+            {[
+              { t: "Voucher ‘MERDEKA45’ digunakan", time: "1 jam lalu" },
+              { t: "Pesanan #ORD-2301 dibuat", time: "2 jam lalu" },
+              { t: "Tiket bantuan baru oleh Sinta", time: "3 jam lalu" },
+            ].map((a, i) => (
+              <li key={i} className="flex items-start gap-3">
+                <span className="mt-1 inline-block h-2 w-2 rounded-full bg-black dark:bg-white/80" />
+                <div>
+                  <p className="text-sm">{a.t}</p>
+                  <p className="text-xs text-gray-500 dark:text-gray-400">{a.time}</p>
+                </div>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+    </main>
   );
 }
