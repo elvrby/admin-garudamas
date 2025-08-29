@@ -8,6 +8,48 @@ export default function Home() {
         <p className="text-sm text-gray-500">Ringkasan singkat untuk Garuda Mas — statistik dan aktivitas terbaru.</p>
       </div>
 
+      {/* ===== Mobile Quick Menu (ikon di atas teks) ===== */}
+      <section className="md:hidden -mt-2">
+        <div className="grid grid-cols-3 gap-3">
+          {/* Tambah Ticket */}
+          <a
+            href="/ticketing" /* arahkan ke halaman ticketing/add sesuai routemu */
+            className="flex flex-col items-center justify-center gap-1.5 rounded-2xl bg-white p-3 shadow-md active:scale-[0.98] transition"
+            aria-label="Tambah Ticket"
+          >
+            {/* Ikon tiket */}
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M3 8a2 2 0 0 1 2-2h6v3a2 2 0 1 0 0 4v3H5a2 2 0 0 1-2-2V8Z" stroke="currentColor" strokeWidth="1.5" />
+              <path d="M21 8a2 2 0 0 0-2-2h-6v3a2 2 0 1 1 0 4v3h6a2 2 0 0 0 2-2V8Z" stroke="currentColor" strokeWidth="1.5" />
+            </svg>
+            <span className="text-xs font-medium text-gray-900">Tambah Ticket</span>
+          </a>
+
+          {/* Pesanan */}
+          <a href="/admin/pesanan" className="flex flex-col items-center justify-center gap-1.5 rounded-2xl bg-white p-3 shadow-md active:scale-[0.98] transition" aria-label="Pesanan">
+            {/* Ikon daftar / bag */}
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M7 7V6a5 5 0 0 1 10 0v1" stroke="currentColor" strokeWidth="1.5" />
+              <path d="M5 8h14l-1.2 11.1A2 2 0 0 1 15.81 21H8.19a2 2 0 0 1-1.99-1.9L5 8Z" stroke="currentColor" strokeWidth="1.5" />
+              <path d="M9 12h6M9 16h6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+            </svg>
+            <span className="text-xs font-medium text-gray-900">Pesanan</span>
+          </a>
+
+          {/* Voucher */}
+          <a href="/admin/voucher" className="flex flex-col items-center justify-center gap-1.5 rounded-2xl bg-white p-3 shadow-md active:scale-[0.98] transition" aria-label="Voucher">
+            {/* Ikon voucher / ticket percent */}
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <rect x="3" y="6" width="18" height="12" rx="2.2" stroke="currentColor" strokeWidth="1.5" />
+              <path d="M8 16l8-8" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+              <circle cx="8" cy="10" r="1" fill="currentColor" />
+              <circle cx="16" cy="14" r="1" fill="currentColor" />
+            </svg>
+            <span className="text-xs font-medium text-gray-900">Voucher</span>
+          </a>
+        </div>
+      </section>
+
       {/* Stats (cards putih, tanpa border) */}
       <section className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4">
         <div className="rounded-2xl bg-white p-5 shadow-md hover:shadow-lg transition-shadow">

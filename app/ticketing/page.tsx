@@ -110,7 +110,7 @@ const TicketingPage: React.FC = () => {
             <h1 className="text-2xl font-bold">Ticketing Bus</h1>
             <p className="text-sm text-white/70">Kelola produk multi-destinasi, kapasitas kursi, harga, dan status.</p>
           </div>
-          <div className="flex items-center gap-3">
+          <div className="block md:flex items-center gap-3">
             <input
               type="text"
               placeholder="Cari: operator, produk, destinasi, kelas..."
@@ -118,7 +118,7 @@ const TicketingPage: React.FC = () => {
               onChange={(e) => setSearch(e.target.value)}
               className="w-full lg:w-72 rounded-xl bg-white/10 text-white placeholder-white/70 px-3 py-2 outline-none focus:bg-white/15"
             />
-            <button onClick={() => setOpenAdd(true)} className="rounded-xl bg-white text-black px-4 py-2 hover:bg-white/90">
+            <button onClick={() => setOpenAdd(true)} className="rounded-xl bg-white text-black px-4 py-2 hover:bg-white/90 mt-3 md:mt-0">
               + Tambah Produk
             </button>
           </div>
