@@ -6,7 +6,7 @@ import Header from "../layout/header";
 import Navbar from "../layout/navbar";
 
 export default function ClientShell({ children }: { children: React.ReactNode }) {
-  const [sidebarOpen, setSidebarOpen] = useState(true);
+  const [, setSidebarOpen] = useState(true);
 
   return (
     <>

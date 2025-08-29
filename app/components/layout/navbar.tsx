@@ -34,7 +34,6 @@ const Sidebar: React.FC<{ onToggle: (isOpen: boolean) => void }> = ({ onToggle }
       window.removeEventListener("resize", onWinResize);
       ro.disconnect();
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
