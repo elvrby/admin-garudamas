@@ -1,9 +1,9 @@
 // app/page.tsx
 export default function Home() {
   return (
-    <main className="p-4 sm:p-6 lg:p-8 space-y-6">
+    <main className=" sm:p-6  space-y-6">
       {/* Headline */}
-      <div className="flex flex-col gap-2">
+      <div className="flex flex-col ">
         <h1 className="text-2xl sm:text-3xl text-black font-semibold">Dashboard</h1>
         <p className="text-sm text-gray-500 dark:text-gray-400">Ringkasan singkat untuk Garuda Mas — statistik dan aktivitas terbaru.</p>
       </div>

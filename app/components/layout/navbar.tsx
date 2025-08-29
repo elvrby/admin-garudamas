@@ -93,11 +93,12 @@ const Sidebar: React.FC<{ onToggle: (isOpen: boolean) => void }> = ({ onToggle }
       <div
         ref={asideRef}
         className={[
-          "fixed top-16 left-0 z-30 h-[calc(100vh-64px)] overflow-hidden",
+          // ⬇️ sembunyikan di mobile, tampilkan di md+
+          "hidden md:block fixed top-16 left-0 z-30 h-[calc(100vh-64px)] overflow-hidden",
           "bg-gradient-to-b from-black to-black border-r border-slate-700/50 shadow-2xl",
           "transition-all duration-300 ease-in-out",
-          // OPEN: mobile 4/5, sm 3/5, desktop 1/5 (20%); CLOSED: w-16
-          isOpen ? "w-4/5 sm:w-3/5 md:w-1/5 max-w-md" : "w-16",
+          // ⬇️ lebar hanya di md+
+          isOpen ? "md:w-1/5 md:max-w-md" : "md:w-16",
         ].join(" ")}
       >
         <div className="flex h-full flex-col">

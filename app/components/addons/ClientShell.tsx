@@ -12,7 +12,7 @@ export default function ClientShell({ children }: { children: React.ReactNode })
     <>
       <Header />
       <Navbar onToggle={setSidebarOpen} />
-      <main className="transition-[margin] duration-10 p-4 sm:p-6 lg:p-8" style={{ marginLeft: "var(--sb-w, 0px)" }}>
+      <main className="transition-[margin] duration-10 p-4 sm:p-6 lg:px-8 lg:py-2" style={{ marginLeft: "var(--sb-w, 0px)" }}>
         {children}
       </main>
     </>

@@ -4,10 +4,9 @@ import Link from "next/link";
 
 export function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
-  const [profileOpen, setProfileOpen] = useState(false);
+  const [profileOpen, setProfileOpen] = useState(false); // desktop only
   const profileRef = useRef<HTMLDivElement>(null);
 
-  // Close dropdowns on outside click / ESC
   useEffect(() => {
     const onClick = (e: MouseEvent) => {
       if (profileRef.current && !profileRef.current.contains(e.target as Node)) {
@@ -30,21 +29,20 @@ export function Header() {
 
   return (
     <header className="sticky top-0 z-50 w-full border-b border-white/10 bg-black backdrop-blur">
-      <div className="mx-auto flex h-16 max-w-7xl items-center px-4 sm:px-6 lg:px-8">
+      <div className="relative mx-auto flex h-16 items-center px-4 sm:px-6 lg:px-4">
         {/* Left: Logo */}
         <Link href="/" className="group flex items-center gap-2 rounded-xl px-2 py-1 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/40">
-          {/* Simple geometric logo */}
           <span className="relative inline-flex h-8 w-8 items-center justify-center rounded-xl bg-white/10 ring-1 ring-white/15">
             <span className="absolute inset-0 rounded-xl bg-gradient-to-br from-white/15 to-white/5" />
             <span className="block h-3 w-3 rotate-45 rounded-[4px] bg-white" />
           </span>
-          <span className="text-lg font-semibold tracking-wide text-white group-hover:text-white">
+          <span className="text-lg font-semibold tracking-wide text-white">
             Garuda <span className="text-white/70">Mas</span>
           </span>
         </Link>
 
-        {/* Center: Nav (desktop) */}
-        <nav className="mx-auto hidden md:flex items-center gap-6">
+        {/* Center: Nav (absolute center on md+) */}
+        <nav className="absolute left-1/2 top-1/2 hidden -translate-x-1/2 -translate-y-1/2 md:flex items-center gap-6">
           <Link href="/" className="text-sm text-white/80 hover:text-white transition-colors">
             Home
           </Link>
@@ -56,12 +54,12 @@ export function Header() {
           </Link>
         </nav>
 
-        {/* Right: Profile */}
+        {/* Right: controls */}
         <div className="ml-auto flex items-center gap-2">
           {/* Mobile menu toggle */}
           <button
             aria-label="Toggle menu"
-            className="inline-flex h-10 w-10 items-center justify-center rounded-xl border border-white/10 bg-white/5 text-white hover:bg-white/10 md:hidden focus:outline-none focus-visible:ring-2 focus-visible:ring-white/40"
+            className="inline-flex h-10 w-10 items-center justify-center rounded-xl text-white hover:bg-white/10 md:hidden focus:outline-none focus-visible:ring-2 focus-visible:ring-white/40"
             onClick={() => setMenuOpen((v) => !v)}
           >
             <svg aria-hidden="true" viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="2">
@@ -69,16 +67,15 @@ export function Header() {
             </svg>
           </button>
 
-          {/* Profile dropdown */}
-          <div className="relative" ref={profileRef}>
+          {/* Desktop-only Profile dropdown */}
+          <div className="relative hidden md:block" ref={profileRef}>
             <button
               onClick={() => setProfileOpen((v) => !v)}
-              className="group inline-flex items-center gap-2 rounded-xl border border-white/10 bg-white/5 px-2 py-1.5 text-white hover:bg-white/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/40"
+              className="group inline-flex items-center gap-2 rounded-xl  bg-white/5 px-2 py-1.5 text-white hover:bg-white/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/40"
               aria-haspopup="menu"
               aria-expanded={profileOpen}
             >
               <span className="inline-flex h-8 w-8 items-center justify-center overflow-hidden rounded-full bg-white/10 ring-1 ring-white/15">
-                {/* Placeholder avatar initial */}
                 <span className="text-sm font-medium text-white/90">GM</span>
               </span>
               <svg aria-hidden="true" viewBox="0 0 20 20" className="h-4 w-4 text-white/70 group-hover:text-white transition" fill="currentColor">
@@ -100,7 +97,7 @@ export function Header() {
                   className="w-full rounded-lg px-3 py-2 text-left text-sm text-red-300 hover:bg-red-400/10"
                   onClick={() => {
                     setProfileOpen(false);
-                    // TODO: hook up logout
+                    // TODO: logout
                   }}
                 >
                   Log out
@@ -111,11 +108,12 @@ export function Header() {
         </div>
       </div>
 
-      {/* Mobile nav sheet */}
+      {/* Mobile nav sheet (menu + profile) */}
       {menuOpen && (
         <div className="md:hidden">
           <div className="border-t border-white/10" />
-          <nav className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-3 space-y-1">
+          <nav className="mx-auto px-4 sm:px-6 lg:px-8 py-3 space-y-1">
+            {/* Main links */}
             <Link href="/" className="block rounded-lg px-3 py-2 text-white/90 hover:bg-white/10" onClick={() => setMenuOpen(false)}>
               Home
             </Link>
@@ -125,6 +123,40 @@ export function Header() {
             <Link href="/terms" className="block rounded-lg px-3 py-2 text-white/90 hover:bg-white/10" onClick={() => setMenuOpen(false)}>
               Terms &amp; Use
             </Link>
+
+            {/* Divider */}
+            <div className="my-2 h-px bg-white/10" />
+
+            {/* Profile area for mobile */}
+            <div className="rounded-xl border border-white/10 bg-white/5 p-3">
+              <div className="flex items-center gap-3">
+                <span className="inline-flex h-9 w-9 items-center justify-center overflow-hidden rounded-full bg-white/10 ring-1 ring-white/15">
+                  <span className="text-sm font-medium text-white/90">GM</span>
+                </span>
+                <div className="min-w-0">
+                  <p className="text-sm font-medium text-white">Garuda Mas</p>
+                  <p className="text-xs text-white/60">Akun</p>
+                </div>
+              </div>
+
+              <div className="mt-3 grid grid-cols-2 gap-2">
+                <Link href="/profile" className="rounded-lg px-3 py-2 text-sm text-white/90 hover:bg-white/10 text-center" onClick={() => setMenuOpen(false)}>
+                  Profile
+                </Link>
+                <Link href="/settings" className="rounded-lg px-3 py-2 text-sm text-white/90 hover:bg-white/10 text-center" onClick={() => setMenuOpen(false)}>
+                  Settings
+                </Link>
+                <button
+                  className="col-span-2 rounded-lg px-3 py-2 text-sm text-red-300 hover:bg-red-400/10"
+                  onClick={() => {
+                    setMenuOpen(false);
+                    // TODO: logout
+                  }}
+                >
+                  Log out
+                </button>
+              </div>
+            </div>
           </nav>
         </div>
       )}
